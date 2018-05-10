@@ -20,9 +20,11 @@ power2 <- filter(power, Date == "2/2/2007" | Date == "1/2/2007") %>%
   mutate(date_time = as.POSIXct(paste(Date,Time), format="%d/%m/%Y %H:%M:%S"))  
 
 #plot x-y line graph 
+library(graphics)
 png(filename="plot3.png", width = 480, height = 480)
 
 plot(power2$date_time, power2$Sub_metering_1, type ="l", ylab = "Energy sub metering", xlab = "")
 lines(power2$date_time, power2$Sub_metering_2, type = "l", col = "red")
 lines(power2$date_time, power2$Sub_metering_3, type = "l", col = "blue")
+legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = c(1,1), lwd = c(2,2), col = c("black", "red", "blue"), bty = "n")
 dev.off()
